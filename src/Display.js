@@ -1,6 +1,5 @@
 import React from 'react';
-import AirlineChart from './LineChart';
-import AirportChart from './BarChart';
+import { AirlineChart, AirportChart } from './Charts';
 
 const Display = (c) => {
 	const getChart = (chart) => {
