@@ -5,7 +5,7 @@ const Display = (e) => {
 	const getChart = (chart) => {
 		if(e.data !== undefined){
 			let csvData = e.data;
-			var year, month, claimAmnt;
+			let year, month, claimAmnt;
 		  if (chart === 'airline') {
 			  /*
 			      the Airline object contains all the claims that belong to a particular airline
@@ -31,7 +31,7 @@ const Display = (e) => {
 			      this.sum += val;
 			    }
 			  }
-			  var airlineClaims = [];
+			  let airlineClaims = [];
 			  /*
 			    iterate through csv data;
 			    if output data structure doesn't contain airline, create new Airline obj, push claim data;
@@ -109,8 +109,8 @@ const Display = (e) => {
 			  */
 			  airlineClaims[airlineClaims.findIndex(item => item.name === "-")].name = "Unknown";
 			  airlineClaims.splice(-1, airlineClaims.length-1);
-			  console.log(airlineClaims);
-				return <AirlineChart data={[11, 75, 35, 63, 77, 78, 48, 89, 9, 97, 69, 7]}/>;
+			  let data = eval('airlineClaims[' + 0 + '].yr' + e.currentYear + '.map(val => val.sum);');
+				return <AirlineChart data={data}/>;
 			} else {
 			  /*
 			      the Airport object contains all the claims that belong to a particular airport
@@ -143,7 +143,7 @@ const Display = (e) => {
 			      */
 			    }
 			  }
-			  var airportClaims = [];
+			  let airportClaims = [];
 			  /*
 			      iterate through csv data;
 			      if output data structure doesn't contain airport, create new Airport obj, push claim data;
@@ -226,13 +226,14 @@ const Display = (e) => {
 			  */
 			  airportClaims[airportClaims.findIndex(item => item.name === "-")].name = "Unknown";
 			  airportClaims.splice(-1, airportClaims.length-1);
-				return <AirportChart data={[53, 64, 97, 33, 37, 30, 4, 15, 13, 37, 15, 79]}/>;
+			  let data = eval('airportClaims[' + 0 + '].yr' + e.currentYear + '.map(val => val.avg);');
+				return <AirportChart data={data}/>;
 			}
 		}
 	}
 
 	return (
-		<section>
+		<section id={e.chart}>
 			<div className='level'>
 				<div className='level-item'>
 					<div className='conatiner is-fluid has-text-centered'>
@@ -256,13 +257,17 @@ const Display = (e) => {
 }
 
 const Tabs = (e) => {
+	const clicky = (event) => {
+		e.onClick(event);
+	}
+
 	return (
 		<section id='tabs'>
 			<div className='container is-fluid'>
 				<div className='tabs is-centered is-fullwidth'>
 				  <ul>
 				  	{e.tabs.map(function callback(tab, i) {
-			  			if(i===0) { return(<li key={'tab' + tab} className='is-active'><a>{tab}</a></li>); } else { return(<li key={'tab' + tab}><a>{tab}</a></li>); }
+			  			if(i===0) { return(<li key={'tab' + tab} id={'tab' + tab} className='is-active' onClick={clicky}><a>{tab}</a></li>); } else { return(<li key={'tab' + tab} id={'tab' + tab}  onClick={clicky}><a>{tab}</a></li>); }
 						})} 
 				  </ul>
 				</div>

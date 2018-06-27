@@ -10,7 +10,8 @@ class App extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			data: this.props.data	
+			data: this.props.data,
+			currentYear: 2010
 		}
 
 		//initialize workers to parse data
@@ -27,12 +28,17 @@ class App extends React.Component {
 		});
 	}
 
+	clicky = (e) => {
+		const currentYear = parseInt(e.currentTarget.id.substring(3, e.currentTarget.id.length));
+		this.setState({ currentYear });
+	}
+
 	render() {
 		return (
 	    <div>
-	      <Tabs tabs={['2010', '2011', '2012', '2013']}/>
-	      <Display chart='airline' data={this.state.data} />
-	      <Display chart='airport' data={this.state.data} />
+	      <Tabs tabs={['2010', '2011', '2012', '2013']} onClick={this.clicky} />
+	      <Display chart='airline' data={this.state.data} currentYear={this.state.currentYear} />
+	      <Display chart='airport' data={this.state.data} currentYear={this.state.currentYear} />
 	    </div>
 	  );
 	}
