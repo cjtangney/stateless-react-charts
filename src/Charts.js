@@ -9,8 +9,34 @@ const AirportChart = (d) => {
 		datasets: [
 			{
 				label: "My First dataset",
-				fillColor: "rgba(220,220,220,0.5)",
-				strokeColor: "rgba(220,220,220,0.8)",
+				fillColor: [
+					"rgba(51, 185, 219, 0.5)", 
+					"rgba(146, 246, 156, 0.5)", 
+					"rgba(195, 75, 75, 0.5)", 
+					"rgba(232, 124, 126, 0.5)", 
+					"rgba(144, 25, 255, 0.5)", 
+					"rgba(121, 174, 235, 0.5)", 
+					"rgba(255, 250, 112, 0.5)", 
+					"rgba(239, 151, 240, 0.5)", 
+					"rgba(255, 175, 56, 0.5)", 
+					"rgba(191, 209, 0, 0.5)", 
+					"rgba(50, 71, 173, 0.5)", 
+					"rgba(5, 163, 7, 0.5)"
+				],
+				strokeColor: [
+					"rgba(51, 185, 219, 1)", 
+					"rgba(146, 246, 156, 1)", 
+					"rgba(195, 75, 75, 1)", 
+					"rgba(232, 124, 126, 1)", 
+					"rgba(144, 25, 255, 1)", 
+					"rgba(121, 174, 235, 1)", 
+					"rgba(255, 250, 112, 1)", 
+					"rgba(239, 151, 240, 1)", 
+					"rgba(255, 175, 56, 1)", 
+					"rgba(191, 209, 0, 1)", 
+					"rgba(50, 71, 173, 1)", 
+					"rgba(5, 163, 7, 1)"
+				],
 				highlightFill: "rgba(220,220,220,0.75)",
 				highlightStroke: "rgba(220,220,220,1)",
 				data: d.data
@@ -52,9 +78,9 @@ const AirlineChart = (d) => {
 		datasets: [
 			{
 				label: "My First dataset",
-				fillColor: "rgba(220,220,220,0.2)",
-				strokeColor: "rgba(220,220,220,1)",
-				pointColor: "rgba(220,220,220,1)",
+				fillColor: "rgba(51, 185, 219, 0.2)",
+				strokeColor: "rgba(51, 185, 219, 1)",
+				pointColor: "rgba(51, 185, 219, 1)",
 				pointStrokeColor: "#fff",
 				pointHighlightFill: "#fff",
 				pointHighlightStroke: "rgba(220,220,220,1)",
