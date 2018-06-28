@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Papa from 'papaparse';
 
 import 'bulma/css/bulma.min.css';
+import 'bulma-pageloader/dist/css/bulma-pageloader.min.css';
 
 import { Tabs, Display } from './Display';
 
@@ -27,6 +28,7 @@ class App extends React.Component {
 	    complete: (result) => {
 	    	const data = result.data;
 	    	this.parseData(data);
+	    	this.hidePageloader();
 	    }
 		});
 	}
@@ -67,9 +69,10 @@ class App extends React.Component {
 			  }
 			  updateSum(val){
 			    this.sum += val;
+			    this.sum = parseFloat(this.sum.toFixed(2));
 			  }
 			  calcAvg(){
-			    this.avg = this.sum / this.value.length;
+			    this.avg = parseFloat((this.sum / this.value.length).toFixed(2));
 			    /*  
 			        ?? stringified version of average for display purposes??
 			        this.avg = (this.sum / this.value.length).toFixed(2);
@@ -211,12 +214,20 @@ class App extends React.Component {
 		}
 	}
 
+	hidePageloader = () => {
+		let timeout = setTimeout(() => {
+			document.getElementById('pageloader').classList.toggle('is-active');
+			clearTimeout(timeout);
+		}, 2000);
+	}
+
 	render() {
 		return (
 	    <div>
 	      <Tabs tabs={['2010', '2011', '2012', '2013']} currentYear={this.state.currentYear} onClick={this.tabClick} />
 	      <Display chart='airline' data={this.getAirlineData()} options={this.getAirlines()} onChange={this.optionChange} />
 	      <Display chart='airport' data={this.getAirportData()} options={this.getAirports()} onChange={this.optionChange} />
+	      <div className='pageloader is-active' id='pageloader'><span className='title'>Loading...</span></div>
 	    </div>
 	  );
 	}

@@ -5,6 +5,7 @@
   "dependencies": {
     "ajv": "^6.0.0",
     "bulma": "^0.7.1",
+    "bulma-pageloader": "^2.1.0",
     "chart.js": "^1.1.1",
     "papaparse": "^4.5.0",
     "react": "^16.4.1",

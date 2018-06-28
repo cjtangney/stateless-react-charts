@@ -5,7 +5,7 @@ const Display = (e) => {
 	const getChart = (chart) => {
 		if(e.data !== undefined){
 		  if (chart === 'airline') {
-		  	return <AirlineChart data={e.data} />
+		  	return <AirlineChart data={e.data} />;
 		  } else {
 		  	return <AirportChart data={e.data} />;
 		  }

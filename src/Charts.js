@@ -8,7 +8,6 @@ const AirportChart = (d) => {
 		labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
 		datasets: [
 			{
-				label: "My First dataset",
 				fillColor: [
 					"rgba(51, 185, 219, 0.5)", 
 					"rgba(146, 246, 156, 0.5)", 
@@ -37,8 +36,34 @@ const AirportChart = (d) => {
 					"rgba(50, 71, 173, 1)", 
 					"rgba(5, 163, 7, 1)"
 				],
-				highlightFill: "rgba(220,220,220,0.75)",
-				highlightStroke: "rgba(220,220,220,1)",
+				highlightFill: [
+					"rgba(51, 185, 219, 1)", 
+					"rgba(146, 246, 156, 1)", 
+					"rgba(195, 75, 75, 1)", 
+					"rgba(232, 124, 126, 1)", 
+					"rgba(144, 25, 255, 1)", 
+					"rgba(121, 174, 235, 1)", 
+					"rgba(255, 250, 112, 1)", 
+					"rgba(239, 151, 240, 1)", 
+					"rgba(255, 175, 56, 1)", 
+					"rgba(191, 209, 0, 1)", 
+					"rgba(50, 71, 173, 1)", 
+					"rgba(5, 163, 7, 1)"
+				],
+				highlightStroke: [
+					"rgba(51, 185, 219, 1)", 
+					"rgba(146, 246, 156, 1)", 
+					"rgba(195, 75, 75, 1)", 
+					"rgba(232, 124, 126, 1)", 
+					"rgba(144, 25, 255, 1)", 
+					"rgba(121, 174, 235, 1)", 
+					"rgba(255, 250, 112, 1)", 
+					"rgba(239, 151, 240, 1)", 
+					"rgba(255, 175, 56, 1)", 
+					"rgba(191, 209, 0, 1)", 
+					"rgba(50, 71, 173, 1)", 
+					"rgba(5, 163, 7, 1)"
+				],
 				data: d.data
 			}
 		]
@@ -77,7 +102,6 @@ const AirlineChart = (d) => {
 		labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
 		datasets: [
 			{
-				label: "My First dataset",
 				fillColor: "rgba(51, 185, 219, 0.2)",
 				strokeColor: "rgba(51, 185, 219, 1)",
 				pointColor: "rgba(51, 185, 219, 1)",
@@ -116,6 +140,9 @@ const AirlineChart = (d) => {
 		datasetStroke : true,
 		//Number - Pixel width of dataset stroke
 		datasetStrokeWidth : 2,
+		tooltips: {
+	    enabled: 'false',
+	  }
 	};
 
 	return (
