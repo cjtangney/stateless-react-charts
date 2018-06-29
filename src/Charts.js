@@ -8,6 +8,7 @@ const AirportChart = (d) => {
 		labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
 		datasets: [
 			{
+				label: 'Sum of Claim Amounts',
 				fillColor: [
 					"rgba(51, 185, 219, 0.5)", 
 					"rgba(146, 246, 156, 0.5)", 
@@ -90,10 +91,51 @@ const AirportChart = (d) => {
 		barValueSpacing : 5,
 		//Number - Spacing between data sets within X values
 		barDatasetSpacing : 1,
+		// Boolean - Determines whether to draw tooltips on the canvas or not
+		showTooltips: true,
+		// Function - Determines whether to execute the customTooltips function instead of drawing the built in tooltips (See [Advanced - External Tooltips](#advanced-usage-external-tooltips))
+		customTooltips: false,
+		// Array - Array of string names to attach tooltip events
+		tooltipEvents: ["mousemove", "touchstart", "touchmove"],
+		// String - Tooltip background colour
+		tooltipFillColor: "rgba(0,0,0,0.8)",
+		// String - Tooltip label font declaration for the scale label
+		tooltipFontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+		// Number - Tooltip label font size in pixels
+		tooltipFontSize: 14,
+		// String - Tooltip font weight style
+		tooltipFontStyle: "normal",
+		// String - Tooltip label font colour
+		tooltipFontColor: "#fff",
+		// String - Tooltip title font declaration for the scale label
+		tooltipTitleFontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+		// Number - Tooltip title font size in pixels
+		tooltipTitleFontSize: 14,
+		// String - Tooltip title font weight style
+		tooltipTitleFontStyle: "bold",
+		// String - Tooltip title font colour
+		tooltipTitleFontColor: "#fff",
+		// String - Tooltip title template
+		tooltipTitleTemplate: "<%= label%>",
+		// Number - pixel width of padding around tooltip text
+		tooltipYPadding: 6,
+		// Number - pixel width of padding around tooltip text
+		tooltipXPadding: 6,
+		// Number - Size of the caret on the tooltip
+		tooltipCaretSize: 8,
+		// Number - Pixel radius of the tooltip border
+		tooltipCornerRadius: 6,
+		// Number - Pixel offset from point x to tooltip edge
+		tooltipXOffset: 10,		
+		// String - Template string for single tooltips
+		tooltipTemplate: "<%if (label){%><%=label%>: $<%}%><%= value.toLocaleString() %>",		
+		// String - Template string for multiple tooltips
+		multiTooltipTemplate: "<%= value %>",
 	};
 
 	return (
 		<BarChart data={chartData} options={chartOptions} width="800" height="400"/>
+		//BarChart.defaults.global.responsive = true;
 	);
 }
 
@@ -140,9 +182,46 @@ const AirlineChart = (d) => {
 		datasetStroke : true,
 		//Number - Pixel width of dataset stroke
 		datasetStrokeWidth : 2,
-		tooltips: {
-	    enabled: 'false',
-	  }
+		// Boolean - Determines whether to draw tooltips on the canvas or not
+		showTooltips: true,
+		// Function - Determines whether to execute the customTooltips function instead of drawing the built in tooltips (See [Advanced - External Tooltips](#advanced-usage-external-tooltips))
+		customTooltips: false,
+		// Array - Array of string names to attach tooltip events
+		tooltipEvents: ["mousemove", "touchstart", "touchmove"],
+		// String - Tooltip background colour
+		tooltipFillColor: "rgba(0,0,0,0.8)",
+		// String - Tooltip label font declaration for the scale label
+		tooltipFontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+		// Number - Tooltip label font size in pixels
+		tooltipFontSize: 14,
+		// String - Tooltip font weight style
+		tooltipFontStyle: "normal",
+		// String - Tooltip label font colour
+		tooltipFontColor: "#fff",
+		// String - Tooltip title font declaration for the scale label
+		tooltipTitleFontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+		// Number - Tooltip title font size in pixels
+		tooltipTitleFontSize: 14,
+		// String - Tooltip title font weight style
+		tooltipTitleFontStyle: "bold",
+		// String - Tooltip title font colour
+		tooltipTitleFontColor: "#fff",
+		// String - Tooltip title template
+		tooltipTitleTemplate: "<%= label%>",
+		// Number - pixel width of padding around tooltip text
+		tooltipYPadding: 6,
+		// Number - pixel width of padding around tooltip text
+		tooltipXPadding: 6,
+		// Number - Size of the caret on the tooltip
+		tooltipCaretSize: 8,
+		// Number - Pixel radius of the tooltip border
+		tooltipCornerRadius: 6,
+		// Number - Pixel offset from point x to tooltip edge
+		tooltipXOffset: 10,		
+		// String - Template string for single tooltips
+		tooltipTemplate: "<%if (label){%><%=label%>: $<%}%><%= value.toLocaleString() %>",		
+		// String - Template string for multiple tooltips
+		multiTooltipTemplate: "<%= value %>",
 	};
 
 	return (

@@ -259,8 +259,8 @@ class App extends React.Component {
 		return (
 	    <div>
 	      <Tabs tabs={['2010', '2011', '2012', '2013']} currentYear={this.state.currentYear} onClick={this.tabClick} />
-	      <Display chart='airline' data={this.getAirlineData()} options={this.getAirlines()} onChange={this.optionChange} />
-	      <Display chart='airport' data={this.getAirportData()} options={this.getAirports()} onChange={this.optionChange} />
+	      <Display chart='airline' data={this.getAirlineData()} options={this.getAirlines()} onChange={this.optionChange} title='Sum of Claim Amounts by Airline' />
+	      <Display chart='airport' data={this.getAirportData()} options={this.getAirports()} onChange={this.optionChange} title='Average of Claim Amounts by Airport' />
 	      <div className='pageloader is-active' id='pageloader'><span className='title'>Loading...</span></div>
 	    </div>
 	  );

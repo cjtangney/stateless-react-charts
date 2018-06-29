@@ -39,10 +39,13 @@ const Display = (e) => {
 	}
 
 	return (
-		<section id={e.chart}>
+		<section className='section' id={e.chart}>
 			<div className='level'>
 				<div className='level-item'>
 					<div className='conatiner is-fluid has-text-centered'>
+						<div className='content'>
+							<h3 className='title'>{e.title}</h3>
+						</div>
 						{getChart(e.chart)}
 					</div>
 				</div>
