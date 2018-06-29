@@ -20,6 +20,9 @@ class App extends React.Component {
 			currentAirport: '',
 		}
 
+		/*
+	  		parse data from the input file  
+		*/
 		let csvFile = require('' + this.props.file + '');
 	  Papa.parse(csvFile, {
 	    header: true,
@@ -60,6 +63,10 @@ class App extends React.Component {
 			    this.yr2013 = [];
 			  }
 			}
+			/*
+			    the MonthlyClaim object contains additional information pertaining to the claim data, as well
+			    as some methods to calculate values
+			*/
 			class MonthlyClaim {
 			  constructor(month, value, sum, avg){
 			    this.month = month;
@@ -73,14 +80,8 @@ class App extends React.Component {
 			  }
 			  calcAvg(){
 			    this.avg = parseFloat((this.sum / this.value.length).toFixed(2));
-			    /*  
-			        ?? stringified version of average for display purposes??
-			        this.avg = (this.sum / this.value.length).toFixed(2);
-			    */
 			  }
 			}
-			let airlineClaims = [];
-			let airportClaims = [];
 			/*
 			  iterate through csv data;
 			  if output data structure doesn't contain airline, create new Airline obj, push claim data;
@@ -88,6 +89,8 @@ class App extends React.Component {
 			  if output data structure doesn't contain airport, create new Airport obj, push claim data;
 			  if output data structure contains current airport, locate it, push claim data;
 			*/
+			let airlineClaims = [];
+			let airportClaims = [];
 			csvData.forEach(function(val){
 			  if(!(airlineClaims.some(function(element){ return element.name === val["Airline Name"].trim() }))){
 			    airlineClaims.push(new Airline(val["Airline Name"].trim(), val));
@@ -157,8 +160,9 @@ class App extends React.Component {
 			  airport.yr2013.forEach(function(month){ month.calcAvg(); });
 			});
 			/*
-			    set airlines with "-" to name "Unknown";
+			    set airlines and airports with "-" to name "Unknown";
 			    remove the last row from the data (<BR>);
+			    set the component's state
 			*/
 			airlineClaims[airlineClaims.findIndex(item => item.name === "-")].name = "Unknown";
 			airlineClaims.splice(-1, airlineClaims.length-1);
@@ -174,11 +178,22 @@ class App extends React.Component {
 		}
 	}
 
+	/*
+	    listen for a tab click
+	    get the currentYear from the tab ID
+	    set the state
+	*/
 	tabClick = (e) => {
 		const currentYear = parseInt(e.currentTarget.id.substring(3, e.currentTarget.id.length), 10);
 		this.setState({ currentYear });
 	}
 
+	/*
+	    listen for the select change
+	    figure out which select changed
+	    figure out which airline / airport value was selected
+	    set the state
+	*/
 	optionChange = (e, c) => {
 		const selected = e.target.value;
 		if(c === 'airline'){
@@ -190,30 +205,49 @@ class App extends React.Component {
 		}
 	}
 
+	/*
+	    if there is data
+	    set the state to an array containing sums for each month's claims
+	*/
 	getAirlineData = () => {
 		if(this.state.data.airlineData[0]['yr' + this.state.currentYear.toString()] !== undefined) {
 			return this.state.data.airlineData[this.state.currentAirline]['yr' + this.state.currentYear.toString()].map(claim => claim.sum);
 		}
 	}
 
+	/*
+	    if there is data
+	    return an array containing all the airline names
+	*/
 	getAirlines = () => {
 		if(this.state.data.airlineData[0]['yr' + this.state.currentYear.toString()] !== undefined) {
 			return this.state.data.airlineData.map(airline => airline.name);
 		}
 	}
 
+	/*
+	    if there is data
+	    set the state to an array containing sums for each month's claims
+	*/
 	getAirportData = () => {
 		if(this.state.data.airportData[0]['yr' + this.state.currentYear.toString()] !== undefined) {
 			return this.state.data.airportData[this.state.currentAirport]['yr' + this.state.currentYear.toString()].map(claim => claim.sum);
 		}
 	}
 
+	/*
+	    if there is data
+	    return an array containing all the airport names
+	*/
 	getAirports = () => {
 		if(this.state.data.airportData[0]['yr' + this.state.currentYear.toString()] !== undefined) {
 			return this.state.data.airportData.map(airport => airport.name);
 		}
 	}
 
+	/*
+	    hide the pageloader div after 2 seconds
+	*/
 	hidePageloader = () => {
 		let timeout = setTimeout(() => {
 			document.getElementById('pageloader').classList.toggle('is-active');
