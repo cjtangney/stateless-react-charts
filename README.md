@@ -2,7 +2,7 @@
 
 This project was developed as an exercise in parsing, storing, and displaying large data sets using stateless React Components. TSA Claims Data between the years of 2010 and 2013 was used as a sample. This data can be downloaded [here](https://www.dhs.gov/sites/default/files/publications/claims-2010-2013_0.xls). The XLS file was converted to CSV before being loaded into the application.
 
-This application is currently being published at: https://couch3ater.github.io/stateless-react-charts
+This application is currently being published at: https://cjtangney.github.io/stateless-react-charts
 
 ## Technologies Used
 
